@@ -1,0 +1,66 @@
+package NhanVienQL;
+import java.util.ArrayList;
+public class NhanVienQL {
+
+	 private ArrayList<Nhanvien> nhanviens;
+	 public void NhanvienQL() {
+	        nhanviens = new ArrayList<>();
+	    }
+
+
+	    public void checkLuong() {
+	        for(Nhanvien nhanvien : nhanviens) {
+	            if(nhanvien.getLuong() > 100) {
+	                System.out.println(nhanvien);
+	            }
+	        }
+	    }
+
+	    public void addStudent(Nhanvien nhanvien) {
+	        nhanviens.add(nhanvien);
+	    }
+
+	    public void removeStudent(String studentId) {
+	        boolean found = false; // Biến để kiểm tra nếu sinh viên đã tìm thấy
+	        for (int i = 0; i < nhanviens.size(); i++) {
+	            Nhanvien s = nhanviens.get(i);
+	            if (s.getId().equals(studentId)) {
+	                nhanviens.remove(i); // Xóa sinh viên tại vị trí i
+	                found = true;
+	                System.out.println("Đã xóa sinh viên với mã: " + studentId);
+	                break; // Thoát vòng lặp sau khi đã xóa
+	            }
+	        }
+	        if (!found) {
+	            System.out.println("Không tìm thấy sinh viên với mã: " + studentId);
+	        }
+	        //nhanviens.removeIf(s -> s.getId().equals(studentId));  // lọc danh sách = vòng for nâng cao
+	    }
+
+	    public void updateStudent(String studentId, String name, int age, double score) {
+	        for (Nhanvien s : nhanviens) {
+	            if (s.getId().equals(studentId)) {
+	                s.setTen(name);
+	                s.setTuoi(age);
+	                s.setLuong(score);
+	            }
+	        }
+	    }
+
+	    public Nhanvien findStudent(String studentId) {
+	        for (Nhanvien s : nhanviens) {  //forEach
+	            if (s.getId().equals(studentId)) {
+	                return s;
+	            }
+	        }
+	        return null;
+	    }
+
+	    public void hienthi() {
+	        for (Nhanvien s : nhanviens) {
+	            System.out.println(s);
+	        }
+	    }
+	}
+	
+
